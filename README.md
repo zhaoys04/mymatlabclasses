@@ -1,4 +1,5 @@
-This is a combination of my matlab classes for my research projects. 
+This is a combination of my matlab classes for my research projects. All the
+classes depend on a 3rd part matlab toolbox, GUI Layout Toolbox, which can be found at http://www.mathworks.com/matlabcentral/fileexchange/27758-gui-layout-toolbox
 
 -@CSILX3601835: Matlab class for controling LDX 36018-35 laser diode driver.
 
