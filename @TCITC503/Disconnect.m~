@@ -1,6 +1,0 @@
-function f = Disconnect(TC)
-        if strcmp(CS.gpib_obj.Status,'open')
-		fclose(CS.gpib_obj);
-		f = 1;
-	end
-end
