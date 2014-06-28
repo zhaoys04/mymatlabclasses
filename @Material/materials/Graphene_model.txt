@@ -1,0 +1,4 @@
+%name:Graphene_model
+%note:Graphene refractive index based on a theoretical model
+%how to call:getIndex('Graphene_model',[wavelength,tao,Gamma,Ef,d]) where tao is electron relaxation time (50fs~1000fs), Gamma is the interband transition broadening (~110meV), Ef is the Fermi level of Graphene and d is the thickness of Graphene layer. The return value also includes the optical conductivity sg1+1j*sg2, which can be accessed by f.sg1 and f.sg2
+

@@ -1,0 +1,7 @@
+function f = Connect(TC)
+        if strcmp(TC.gpib_obj.Status,'closed')
+		fopen(TC.gpib_obj);
+           	pause(0.1);
+		f = 1;
+	end
+end

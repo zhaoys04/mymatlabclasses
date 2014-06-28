@@ -1,0 +1,12 @@
+function f = Get_Voltage(CS)
+        st = str2num(query(CS.gpib_obj,'*ESR?;'));
+        if (st ~=0)
+            display('previous command running while getting voltage');
+            f = 0;
+            return
+        end
+          V = str2double(query(CS.gpib_obj,'LAS:LDV?;'));
+	  CS.Voltage = V;
+	  f = V;
+	  return
+end

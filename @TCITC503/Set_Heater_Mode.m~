@@ -1,0 +1,6 @@
+function f = Set_Heater_Mode(TC,Mode)
+	TC.Heater_Mode = Mode;
+	TC.gpib_obj.EOSMode = 'write';
+	fprintf(TC.gpib_obj,'$A1');
+	f = 1;
+end

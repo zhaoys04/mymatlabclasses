@@ -1,0 +1,41 @@
+classdef RTThorlabsCR1Z7<handle
+    properties (Access = protected)
+        devicePanelHandle;
+        device_obj;
+	end
+	properties (SetAccess = protected, GetAccess = public)
+        currentPosition;
+        profileFile = '1';
+        serialNum;
+        Tonotify;
+        connected = false;
+        RT_Timer = timer('ExecutionMode','fixedspacing','Period',1);
+    end
+    events
+        eRTThorlabsCR1Z7PositionChanged;
+    end
+	methods 
+		function RT = RTThorlabsCR1Z7(serialNum,profileFile)
+            switch nargin
+                case 2
+                    RT.serialNum = serialNum;
+                    RT.profileFile = profileFile;
+                case 1
+                    RT.serialNum = serialNum;
+                otherwise
+                    display('wrong input');
+            end
+            RT.Tonotify = [RT];
+            set(RT.RT_Timer,'TimerFcn',@(hObject,eventdata)TimerFcn(RT,hObject,eventdata));
+   		end
+		f = Connect(RT);
+		f = Disconnect(RT);
+        f = Gohome(RT);
+        f = Rotateto(RT,degree);
+        f = Rotateby(RT,degree);
+        f = Getposition(RT);
+        f = Waitforcomplete(RT,s);
+        f = TimerFcn(RT,hObject,eventdata);
+        f = Showlayout(RT,hPanel);
+	end
+end

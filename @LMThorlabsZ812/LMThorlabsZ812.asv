@@ -1,0 +1,40 @@
+classdef LMThorlabsZ812<handle
+    properties (Access = protected)
+        device_obj;
+        devicePanelHandle;
+	end
+	properties (SetAccess = protected, GetAccess = public)
+        LM_Timer = timer('ExecutionMode','fixedspacing','Period',1);
+        currentPosition = 0;
+        profileFile = '1';
+        Tonotify = [];
+        serialNum;
+    end
+    events
+        eLMThorlabsZ812PositionChanged;
+    end
+	methods 
+		function LM = LMThorlabsZ812(serialNum,profileFile)
+            switch nargin
+                case 2
+                    LM.serialNum = serialNum;
+                    LM.profileFile = profileFile;
+                case 1
+                    LM.serialNum = serialNum;
+                otherwise
+                    display('wrong input');
+            end
+            LM.Tonotify = [LM];
+            set(LM.LM_Timer,'TimerFcn',@(hObject,eventdata)LM_TimerFcn(LM,hObject,eventdata));
+		end
+		f = Connect(LM);
+		f = Disconnect(LM);
+        f = Gohome(LM);
+        f = Moveto(LM,position);
+        f = Moveby(LM,distance);
+        f = Getposition(LM);
+        f = LM_TimerFcn(LM,hObject,eventdata);
+        f = Waitforcomplete(LM,s);
+        f = Showlayout(LM
+	end
+end

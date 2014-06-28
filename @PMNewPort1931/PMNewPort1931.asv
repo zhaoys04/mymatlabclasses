@@ -1,0 +1,69 @@
+classdef PMNewPort1931 < handle
+	properties (Access = protected)
+		device_obj;
+		hPanel;
+		handles;
+        Buffer = '0000000000000000000000000000000000000000000000000000000000000000';
+	end
+	properties (SetAccess = protected, GetAccess = public)
+		Serial_port = 'com1';
+        usbAddress = 3;
+        productID = 0;
+        ConnectedByUSB = 0;
+		Power_Read = 0;
+		Power_Average = 0;
+		Wavelength = 1550e-9;
+		Average_Time = 1;
+		PM_Timer = timer('ExecutionMode','fixedspacing','Period',1,'TimerFcn','PM.PM_TimerFcn');
+	end
+	methods 
+		function PM = PMNewPort1931(Port,hand,connectByUSB)
+            switch nargin
+                case 3
+                    PM.usbAddress = Port;
+    				PM.hPanel = hand;
+                    PM.ConnectedByUSB = 1;
+                case 2
+                    PM.Serial_port = Port;
+                    PM.hPanel = hand;
+                    PM.ConnectedByUSB = 0;
+                case 1
+                    PM.Serial_port = Port;
+                    PM.hPanel = figure('Visible','On','Position',[0,0,1024,768]);
+                    PM.ConnectedByUSB = 0;
+                otherwise
+                    PM.hPanel = figure('Visible','On','Position',[0,0,1024,768]);
+                    PM.ConnectedByUSB = 0;
+            end
+			if nargin > 0
+				PM.Serial_port = Serial_port;
+				PM.hPanel = hand;
+			else
+				PM.Serial_port = 'com1';
+				PM.hPanel = 0;
+            end
+            if PM.ConnectedByUSB
+            else
+                PM.device_obj = serial(Serial_port);
+    			set(PM.device_obj, 'timeout', 5);
+        		set(PM.device_obj, 'baudrate', 38400);
+            	set(PM.device_obj, 'databits', 8);
+                set(PM.device_obj, 'stopbits', 1);
+    			set(PM.device_obj, 'parity', 'none');
+    			set(PM.device_obj, 'flowcontrol', 'none');
+    			set(PM.device_obj, 'inputbuffersize', 5000);
+    			set(PM.device_obj, 'terminator', 'cr/lf');
+            end
+		end
+		f = ShowLayout(PM);
+		f = Connect(PM);
+		f = Disconnect(PM);
+		f = Get_Power(PM);
+		f = Get_Wavelength(PM);
+		f = Set_Wavelength(PM, Wavelength);
+		f = Set_Average_Time(PM, Time);
+		f = Get_Average_Power(PM);
+		f = Update(PM);
+		f = PM_TimerFcn(PM);
+	end
+end

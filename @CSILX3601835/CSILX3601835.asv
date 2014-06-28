@@ -1,0 +1,60 @@
+classdef CSILX3601835 < handle
+	properties (Access = protected)
+		gpib_obj = 0;
+	end
+	properties (SetAccess = protected, GetAccess = public)
+		gpib_address;
+		Current_Set = 0;
+		Current_Output = 0;
+		Voltage = 0;
+		Current_Limit = 0;
+		Mode = 0; % 1:CW 2:HPULSE 3:PULSE 4:TRIG
+		Mode_String = '';
+		Output = 0;
+        QCW = struct('pw',0,'freq',0,'duty',0,'Mode',0); %pulse width in secs, frequency in 1-1000Hz, duty cycle in percentage, 0:constant duty cycle; 1:constant frequency
+		CS_Timer = timer('ExecutionMode','fixedspacing','Period',1,'TimerFcn','CS.CS_TimerFcn');
+		Tonotify = [];
+    end
+	events
+		eCSILX3601835CurrentChanged;
+		eCSILX3601835VoltageChanged;
+		eCSILX3601835ModeChanged;
+		eCSILX3601835CurrentLimitChanged;
+		eCSILX3601835PulseWidthChanged;
+		eCSILX3601835FreqChanged;
+		eCSILX3601835DutyCycleChanged;
+	end
+	methods 
+		function CS = CSILX3601835(gpib_address,tonotify)
+			if nargin > 0
+				CS.gpib_address = gpib_address;
+			else
+				CS.gpib_address = 0;
+			end
+			CS.Tonotify = [CS];
+		end
+
+%%		f = ShowLayout(CS,hPanel);
+		f = Connect(CS);
+		f = Disconnect(CS);
+		f = Get_Current(CS);
+		f = Get_Voltage(CS);
+		f = Set_Current(CS, Current_Value); % in Amps
+		f = Set_Mode(CS, Mode);
+		f = Get_Mode(CS);
+		f = Set_Current_Limit(CS, Current_Limit);
+		f = Get_Current_Limit(CS);
+		f = Get_Pulse_Width(CS); % in ms
+		f = Set_Pulse_Width(CS,pw); % in secs
+		f = Get_Freq(CS); % in Hz
+		f = Set_Freq(CS, freq); % in Hz
+		f = Get_Duty_Cycle(CS);  % in percentage
+		f = Set_Duty_Cycle(CS,dc); % in percentage
+		f = Set_Output(CS);
+		f = Set_QCW_Mode(CS,Mode); % 0: constant duty cycle 1: constant frequency
+		f = Get_QCW_Mode(CS);
+		f = Deset_Output(CS);
+		f = Get_Output(CS);
+		f = CS_TimerFcn(CS);
+	end
+end

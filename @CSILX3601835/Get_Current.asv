@@ -1,0 +1,7 @@
+function f = Get_Current(CS)
+        st = str2num(
+          I = str2num(query(CS.gpib_obj,'LAS:LDI?;'));
+	  CS.Current_Output = I;
+	  f = I;
+	  return 
+end

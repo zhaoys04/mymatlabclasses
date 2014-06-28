@@ -1,0 +1,20 @@
+function f = Set_Output(CS)
+	if CS.Output == 0
+                fwrite(CS.gpib_obj,'LAS:OUTPUT 1;');
+		CS.Get_Output;
+		if CS.Output == 1
+			f = 1;
+		else
+			f = 0;
+		end
+	else
+                fwrite(CS.gpib_obj,'LAS:OUTPUT 0;');
+		CS.Get_Output;
+		if CS.Output == 0
+			f = 1;
+		else
+			f = 0;
+		end
+	end
+
+end
