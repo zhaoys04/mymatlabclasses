@@ -118,12 +118,12 @@ function f = ShowLayout(LI,hPanel)
 		delete(findobj(hContinue_Measurement_Plot_IV,'type','line'));
 		hLIline = line(LI.Results.I,LI.Results.L,'Parent',hContinue_Measurement_Plot_LI);
 		hIVline = line(LI.Results.I,LI.Results.V,'Parent',hContinue_Measurement_Plot_IV,'Color','g');
-		set(hContinue_Measurement_Plot_IV,'Position',get(hContinue_Measurement_Plot_LI,'Position'));
+%		set(hContinue_Measurement_Plot_IV,'Position',get(hContinue_Measurement_Plot_LI,'Position'));
 		for x = 2:n
 			LI.AppendMeasurement(I(x));
 			set(hLIline,'Xdata',LI.Results.I,'YData',LI.Results.L);
 			set(hIVline,'Xdata',LI.Results.I,'YData',LI.Results.V);
-			set(hContinue_Measurement_Plot_IV,'Position',get(hContinue_Measurement_Plot_LI,'Position'));
+%			set(hContinue_Measurement_Plot_IV,'Position',get(hContinue_Measurement_Plot_LI,'Position'));
 			pause(1e-6);
 		end
 	end
