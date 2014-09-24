@@ -9,7 +9,7 @@ function f = Moveby(LM,Dis)
 		LM.setPosition = 150;
 		f = 2;
 	else
-		[p3 p4 p5 p6] = LM.entryToBits(Dis/0.001984375);
+		[p3 p4 p5 p6] = LM.entryToBits(Dis/LM.resolution);
 		MovRel = [0 21 p3 p4 p5 p6];
 		LM.setPosition = LM.currentPosition + Dis;
 		fwrite(LM.device_obj,MovRel,'uint8');

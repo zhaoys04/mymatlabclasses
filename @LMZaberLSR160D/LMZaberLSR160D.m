@@ -39,6 +39,7 @@ classdef LMZaberLSR160D<handle
 	        device_obj = 0;
 	end
 	properties (SetAccess = protected, GetAccess = public)
+		resolution = 1.984375e-3; %in mm
 		serialPort = 'com1';
 		velocity = 1;
 		LM_Timer = timer('ExecutionMode','fixedspacing','Period',1);
@@ -61,6 +62,7 @@ classdef LMZaberLSR160D<handle
 			LM.Tonotify = [LM, tonotify];
 			set(LM.LM_Timer,'TimerFcn',@(hObject,eventdata)LM_TimerFcn(LM,hObject,eventdata));
 		end
+		f = Reset(LM);
 		f = Connect(LM);
 		f = Disconnect(LM);
 	        f = Gohome(LM);
@@ -68,8 +70,8 @@ classdef LMZaberLSR160D<handle
 	        f = Moveto(LM,Pos);
 	        f = Moveby(LM,Dis);
 	        f = Getposition(LM);
+		f = Setresolution(LM,res);
 	        f = Getreply(LM);
-		f = Fastspeed(LM);
 	        [d3 d4 d5 d6] = entryToBits(LM,data);
 		LM_TimerFcn(LM,hObject,eventdata);
 		f = Checkready(LM);

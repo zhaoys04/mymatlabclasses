@@ -4,5 +4,5 @@ function f = Getposition(LM)
 	fwrite(LM.device_obj,AbsPos,'uint8');
 	Pos = fread(LM.device_obj,6,'uint8');
 	Pos = Pos(end)*256^3+Pos(end-1)*256^2+Pos(end-2)*256+Pos(end-3);
-	f = Pos*0.001984375;
+	f = Pos*LM.resolution;
 end
