@@ -41,5 +41,13 @@ classdef OSA < handle
 		f = Connect(OS);
 		f = Disconnect(OS);
 		f = Get_Spectrum(OS);
+		f = SetStartWL(OS,wl);
+		f = SetStopWL(OS,wl);
+		f = SetCenterWL(OS,wl);
+		f = SetSpan(OS,span);
+		f = GetStartWL(OS);
+		f = GetStopWL(OS);
+		f = GetCenterWL(OS);
+		f = GetSpan(OS);
 	end
 end
