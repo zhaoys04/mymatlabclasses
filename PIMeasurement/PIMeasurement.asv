@@ -1,0 +1,21 @@
+clear
+f = figure('Visible','off','Position',[0,0,1024,768]);
+hCurrent_Source_Panel = uipanel('Parent',f,'Title','Current Source',...
+                                    'Position', [0.01,0.5,0.5,0.49]);
+hTemperature_Controller_Panel = uipanel('Parent',f,'Title','Temperature Controller',...
+                                    'Position', [0.51,0.5,0.48,0.49]);
+hPower_Meter_Panel = uipanel('Parent',f,'Title','Power Meter',...
+                                    'Position', [0.01,0.01,0.5,0.49]);
+hResult_Panel = uipanel('Parent',f,'Title','Result',...
+                                    'Position', [0.51,0.01,0.48,0.49]);
+CS = CSILX3744B(3);
+TC = TCITC503(24);
+%PM = PMNewPort1931(3,1);
+PM = PMNewPort1931('com1',0);
+LI = LIResult(CS,PM);
+CS.ShowLayout(hCurrent_Source_Panel);
+TC.ShowLayout(hTemperature_Controller_Panel);
+PM.ShowLayout(hPower_Meter_Panel);
+LI.ShowLayout(f);
+set(f,'Visible','on');
+movegui(f,'center');
