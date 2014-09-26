@@ -58,7 +58,7 @@ classdef LMZaberLSR160D<handle
 			if nargin>0
 				LM.serialPort = Serial_Port;
 			end
-			LM.device_obj = serial(LM.serialPort);
+%			LM.device_obj = serial(LM.serialPort);
 			LM.Tonotify = [LM, tonotify];
 			set(LM.LM_Timer,'TimerFcn',@(hObject,eventdata)LM_TimerFcn(LM,hObject,eventdata));
 		end
