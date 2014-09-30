@@ -64,7 +64,10 @@ set(hHH2,'Sizes',[10,-1,-1,10]);
 set(hHH3,'Sizes',[10,-1,-1,10]);
 set(hHH4,'Sizes',[10,-1,-1,-1,-1,10]);
 
-%LoadDefault_Callback;
+
+LoadDefault_Callback;
+set(hgpib_CS_Edit,'Enable','off');
+set(hgpib_TC_Edit,'Enable','off');
 
 movegui(f1,'center');
 set(f1,'Visible','on');
