@@ -61,5 +61,6 @@ classdef MultiLayerSlabs<handle
 		f = setSubstrateEps(MLS,epsilon);
 		f = setCladdingEps(MLS,epsilon);
 		f = setD(MLS,d);
+		f = getGratingMode(MLS,wavelength,b);
 	end
 end
