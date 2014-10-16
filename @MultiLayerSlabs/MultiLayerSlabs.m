@@ -13,6 +13,8 @@ classdef MultiLayerSlabs<handle
 	%	setD(d): set the layer thickness parameter with the new d. 
 	%	setSubstrateEps(epsilon): change the substrate epsilon to the new epsilon
 	%	setCladdingEps(epsilon): change the cladding epsilon to the new epsilon
+	%	getGratingMode(wavelength,b): solve for the propagating constant of grating mode around given b
+	%	plotGratingMode(wavelength,b,x): plot the mode profile of a solved grating mode with the propagating constant of given b at the give position defined x
 	%
 	% Example:
 	% 	MLS = MultiLayerSlabs(cladding_epsilon, substrate_epsilon,epsilon1,epsilon2,d1,d2,N);
@@ -62,5 +64,6 @@ classdef MultiLayerSlabs<handle
 		f = setCladdingEps(MLS,epsilon);
 		f = setD(MLS,d);
 		f = getGratingMode(MLS,wavelength,b);
+		f = plotGratingMode(MLS,wavelength,b,x);
 	end
 end
