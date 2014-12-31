@@ -23,7 +23,7 @@ classdef TDS3000 < handle
 	%	Get_Wave(channel) - Query the wave of channel, channel: ch1 or ch2 
 	%	Set_Time_div(div) - Set the division value of time axis 
 	%	Set_CH_Scale(channel,div) - Set the vertical scale of channel 
-	%	Set_Acq_Mode(TDS,Mode) - Set the acquisition mode of oscillator 
+	%	Set_Acq_Mode(TDS,ACQ) - Set the acquisition mode of oscillator 
 	%	Auto_Vertical_Tune(channel) - Query the wave shape of channel with automatically tunned vertical scale 
 	%	Set_Position(channel,pos) - Set the baseline position of channel
 	%
@@ -39,7 +39,7 @@ classdef TDS3000 < handle
 		data_num=10000;
 		tds_width=2;
 		binaryconv = 0;
-		ACQ = struct('Mode',0,'NumAvg',1,'NumEnv',1,'State',0,'StopA',0);
+		ACQ = struct('Mode',0,'NumAvg',1,'NumEnv',1,'State','STOP','StopA','SEQ');
 		TDS_Timer = timer; 
 		TIMEDIVS=[2e-9,4e-9,10e-9,20e-9,40e-9,100e-9,200e-9,400e-9,1e-6,2e-6,...
 			    4e-6,10e-6,20e-6,40e-6,100e-6,200e-6,400e-6,1e-3,2e-3,4e-3,10e-3,...
@@ -64,7 +64,7 @@ classdef TDS3000 < handle
 		f = Get_Wave(TDS,channel); %channel: ch1 or ch2
 		f = Set_Time_div(TDS,div);
 		f = Set_CH_Scale(TDS,channel,div);
-		f = Set_Acq_Mode(TDS,Mode);
+		f = Set_Acq_Mode(TDS,ACQ);
 		f = Auto_Vertical_Tune(TDS,channel);
 		f = Set_Position(TDS,channel,pos);
 %		f = TDS_TimerFcn(TDS,obj,event);
