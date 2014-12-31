@@ -26,6 +26,7 @@ classdef TDS3000 < handle
 	%	Set_Acq_Mode(TDS,ACQ) - Set the acquisition mode of oscillator 
 	%	Auto_Vertical_Tune(channel) - Query the wave shape of channel with automatically tunned vertical scale 
 	%	Set_Position(channel,pos) - Set the baseline position of channel
+	%	WaitforAcqStop() - Return when acquisition is stop
 	%
 	% Example:
 	% 	TDS = TDS3000(gpib_address, tonotify);
@@ -67,6 +68,7 @@ classdef TDS3000 < handle
 		f = Set_Acq_Mode(TDS,ACQ);
 		f = Auto_Vertical_Tune(TDS,channel);
 		f = Set_Position(TDS,channel,pos);
+		f = WaitforAcqStop(TDS);
 %		f = TDS_TimerFcn(TDS,obj,event);
 	end
 end
