@@ -148,7 +148,6 @@ if (f1_data.OK == true)
 		OS2.ShowLayout(hSpectrumResult_Panel);
 		movegui(f,'center');
 		set(f,'Visible','on');
-
 	end
 
 end

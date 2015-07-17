@@ -77,5 +77,7 @@ classdef PMNewPort1931 < handle
 		f = PM_TimerFcn(PM,obj,event);
 	        f = SendCommandviaUSB(PM,Command);
 	        f = GetResponseviaUSB(PM);
+	        f = SendCommandviaSerial(PM,Command);
+	        f = GetResponseviaSerial(PM);
 	end
 end

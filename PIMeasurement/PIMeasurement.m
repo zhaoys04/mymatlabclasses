@@ -105,8 +105,10 @@ if (f1_data.OK == true)
 	hResult_Panel = uipanel('Parent',hV2,'Title','Result');
 	set(hH1,'Sizes',[650,-1]);
 	set(hV2,'Sizes',[250,-1]);
+%	CS2 = CSILX3601835(f1_data.gpibCS,[]);
 	CS2 = CSILX3744B(f1_data.gpibCS,[]);
-	TC2 = TCITC503(f1_data.gpibTC,[]);
+
+    TC2 = TCITC503(f1_data.gpibTC,[]);
 	if (f1_data.gpibPM == 1)
 		PM2 = PMNewPort1931(3,1);   %Connect by USB
 	else
