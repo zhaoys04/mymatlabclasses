@@ -49,7 +49,7 @@ function f = plotGratingMode(MLS,wavelength,b,x)
 	L = (x>=d0);
 	E_TE(L) = Ef*exp(1j*kz*(x(L)-d0))+Eb*exp(-1j*kz*(x(L)-d0));
 	function f = msqrt(x)
-		f = sqrt(x);
+		f = -sqrt(x);
 	end
 	f = E_TE;
 end
